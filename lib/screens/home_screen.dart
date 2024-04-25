@@ -9,6 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _countLikes = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +18,49 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: const Text('Home Screen'),
       ),
-      body: const Center(
-        child: Text('Welcome to the Home Screen!'),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '$_countLikes Like',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 5),
+            const Icon(
+              Icons.favorite,
+              color: Colors.red,
+            )
+          ],
+        ),
       ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Icon(Icons.favorite), Text('+')]),
+            onPressed: () {
+              setState(() {
+                _countLikes++;
+              });
+            },
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Icon(Icons.favorite), Text('-')]),
+            onPressed: () {
+              setState(() {
+                _countLikes--;
+              });
+            },
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
