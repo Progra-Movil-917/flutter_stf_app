@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '$_countLikes Like',
+          '$_countLikes Like${_countLikes < 2 ? '' : 's'}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 5),
@@ -54,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [Icon(Icons.favorite), Text('-')]),
             onPressed: () {
               setState(() {
+                 if (_countLikes > 0) {
                 _countLikes--;
+      }
               });
             },
           ),
